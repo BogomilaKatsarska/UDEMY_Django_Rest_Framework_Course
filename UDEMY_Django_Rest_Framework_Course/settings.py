@@ -57,6 +57,23 @@ Section 4 Notes:
 
 Section 5 Notes:
 
+1. Validations they are called when we call 'serializer.is_valid()':
+    - field level - only checking a particular field
+    - object level - e.g.: movie name should not be the same as description
+    - validators - add validator in field
+
+2. Relationships:
+    - One-To-One   -  one single obj can be tied up to only 1 obj (one restaurant can have only 1 location)
+                      restaurant=models.OneToOneFiled(Place, on_delete=models.CASCADE, primary_key=True)
+    - One-To-Many  -  Netflix can have many movies, but 1movie can have only 1 streaming platform
+                      reporter=models.ForeignKey(Reporter, on_delete=models.CASCADE)
+    - Many-To-Many - one article can be published on many publications, and one publication can have many articles
+                      publications = models.ManyToManyField(Publication)
+
+3. class VideoSerializer(serializers.HyperlinkedModelSerializer)
+    serializer = VideoSerializer(queryset, context={'request': request})
+
+4. Generic Views
 """
 
 from pathlib import Path
